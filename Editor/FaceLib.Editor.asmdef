@@ -1,0 +1,19 @@
+{
+  "name": "FaceLib.Editor",
+  "rootNamespace": "FaceLib.Editor",
+  "references": [
+    "FaceLib"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
+
