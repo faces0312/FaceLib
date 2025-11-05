@@ -1,17 +1,11 @@
 {
   "name": "com.face.facelib",
   "displayName": "FaceLib",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "unity": "2020.3",
   "description": "Reusable utilities for Unity (FaceLib).",
   "author": { "name": "face" },
   "license": "MIT",
-  "samples": [
-    {
-      "displayName": "Example",
-      "description": "Basic usage of FaceLib",
-      "path": "Samples~/Example"
-    }
-  ]
+  "samples": []
 }
 

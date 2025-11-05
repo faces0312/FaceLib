@@ -13,6 +13,12 @@ namespace FaceLib
 
         public static bool IsInitialized { get; private set; }
 
+        public static ObjectManager Object { get; private set; }
+
+        public static UIManager UI { get; private set; }
+
+        public static PoolManager Pool { get; private set; }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void AutoBootstrap()
         {
@@ -40,13 +46,82 @@ namespace FaceLib
         {
             EnsureExists();
             if (IsInitialized) return;
+            Object ??= new ObjectManager();
+            UI ??= new UIManager();
+            Pool ??= new PoolManager();
+
+            Object.Initialize();
+            UI.Initialize();
+            Pool.Initialize();
             IsInitialized = true;
         }
 
         public static void Shutdown()
         {
             if (!IsInitialized) return;
+            UI?.Shutdown();
+            Object?.Shutdown();
+            Pool?.Shutdown();
+
+            UI = null;
+            Object = null;
+            Pool = null;
             IsInitialized = false;
+        }
+
+        // --- Individual control APIs ---
+        public static void EnsureObject()
+        {
+            Object ??= new ObjectManager();
+        }
+
+        public static void EnsureUI()
+        {
+            UI ??= new UIManager();
+        }
+
+        public static void EnsurePool()
+        {
+            Pool ??= new PoolManager();
+        }
+
+        public static void InitializeObject()
+        {
+            EnsureExists();
+            EnsureObject();
+            Object.Initialize();
+        }
+
+        public static void InitializeUI()
+        {
+            EnsureExists();
+            EnsureUI();
+            UI.Initialize();
+        }
+
+        public static void InitializePool()
+        {
+            EnsureExists();
+            EnsurePool();
+            Pool.Initialize();
+        }
+
+        public static void ShutdownObject()
+        {
+            Object?.Shutdown();
+            Object = null;
+        }
+
+        public static void ShutdownUI()
+        {
+            UI?.Shutdown();
+            UI = null;
+        }
+
+        public static void ShutdownPool()
+        {
+            Pool?.Shutdown();
+            Pool = null;
         }
 
 #if UNITY_EDITOR
